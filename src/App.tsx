@@ -220,6 +220,19 @@ const App: React.FC = () => {
 							padding: '.7em',
 						}}
 						onClick={() => {
+							loadGrid();
+						}}>
+						Restore
+					</button>
+					<button
+						style={{
+							marginBottom: '1em',
+							marginLeft: '2em',
+							width: '5em',
+							border: 'none',
+							padding: '.7em',
+						}}
+						onClick={() => {
 							window.location = 'https://wikipedia.org/wiki/Conway%27s_Game_of_Life' as any;
 						}}>
 						About
@@ -237,19 +250,6 @@ const App: React.FC = () => {
 								speedRef.current = parseInt(e.target.value);
 							}}></input>
 					</div>
-					<button
-						style={{
-							marginBottom: '1em',
-							marginLeft: '2em',
-							width: '5em',
-							border: 'none',
-							padding: '.7em',
-						}}
-						onClick={() => {
-							loadGrid();
-						}}>
-						Restore
-					</button>
 				</div>
 				<div
 					className='App'
