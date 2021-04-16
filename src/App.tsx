@@ -17,6 +17,7 @@ const neighborRelativePositions = [
 
 const App: React.FC = () => {
 	const [grid, setGrid] = useState(createGrid());
+	const [prevGrid, setPrevGrid] = useState(createGrid());
 	const [isRunning, setRunning] = useState(false);
 	const [isNeighborsVisible, setNeighborVisible] = useState(false);
 	const [isGridVisible, setGridVisible] = useState(true);
@@ -47,6 +48,18 @@ const App: React.FC = () => {
 		let newGrid = [...grid];
 		newGrid[x][y] = isActive;
 		setGrid(newGrid);
+	}
+
+	function saveGrid() {
+		setPrevGrid(duplicate2DArray(grid));
+	}
+
+	function loadGrid() {
+		setRunning(false);
+		runRef.current = false;
+		let curGrid = duplicate2DArray(grid);
+		setGrid(duplicate2DArray(prevGrid));
+		setPrevGrid(curGrid);
 	}
 
 	function drawGrid() {
@@ -143,6 +156,7 @@ const App: React.FC = () => {
 						}}
 						onClick={() => {
 							if (!isRunning) {
+								saveGrid();
 								setRunning(true);
 								runRef.current = true;
 								simulate(true);
@@ -164,6 +178,7 @@ const App: React.FC = () => {
 						onClick={() => {
 							setRunning(false);
 							runRef.current = false;
+							saveGrid();
 							setGrid(createGrid());
 						}}>
 						Clear
@@ -222,6 +237,19 @@ const App: React.FC = () => {
 								speedRef.current = parseInt(e.target.value);
 							}}></input>
 					</div>
+					<button
+						style={{
+							marginBottom: '1em',
+							marginLeft: '2em',
+							width: '5em',
+							border: 'none',
+							padding: '.7em',
+						}}
+						onClick={() => {
+							loadGrid();
+						}}>
+						Restore
+					</button>
 				</div>
 				<div
 					className='App'
