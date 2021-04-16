@@ -20,6 +20,7 @@ const App: React.FC = () => {
 	const [isRunning, setRunning] = useState(false);
 	const [isNeighborsVisible, setNeighborVisible] = useState(false);
 	const [isGridVisible, setGridVisible] = useState(true);
+	const [speed, setSpeed] = useState(500);
 
 	function createGrid() {
 		let newArr = [];
@@ -84,6 +85,7 @@ const App: React.FC = () => {
 		return divGrid;
 	}
 	let runRef = useRef(isRunning);
+	let speedRef = useRef(speed);
 
 	function getNeighbors(grid: any, x: number, y: number) {
 		let neighbors = 0;
@@ -117,7 +119,7 @@ const App: React.FC = () => {
 
 			setTimeout(() => {
 				simulate(runRef.current);
-			}, 500);
+			}, speedRef.current);
 		}
 	}
 
@@ -131,82 +133,96 @@ const App: React.FC = () => {
 				flexDirection: 'column',
 			}}>
 			<div>
-				<button
-					style={{
-						marginBottom: '1em',
-						width: '5em',
-						border: 'none',
-						padding: '.7em',
-					}}
-					onClick={() => {
-						if (!isRunning) {
-							setRunning(true);
-							runRef.current = true;
-							simulate(true);
-						} else {
+				<div className='menu'>
+					<button
+						style={{
+							marginBottom: '1em',
+							width: '5em',
+							border: 'none',
+							padding: '.7em',
+						}}
+						onClick={() => {
+							if (!isRunning) {
+								setRunning(true);
+								runRef.current = true;
+								simulate(true);
+							} else {
+								setRunning(false);
+								runRef.current = false;
+							}
+						}}>
+						{isRunning ? 'Stop' : 'Run'}
+					</button>
+					<button
+						style={{
+							marginBottom: '1em',
+							marginLeft: '2em',
+							width: '5em',
+							border: 'none',
+							padding: '.7em',
+						}}
+						onClick={() => {
 							setRunning(false);
 							runRef.current = false;
-						}
-					}}>
-					{isRunning ? 'Stop' : 'Run'}
-				</button>
-				<button
-					style={{
-						marginBottom: '1em',
-						marginLeft: '2em',
-						width: '5em',
-						border: 'none',
-						padding: '.7em',
-					}}
-					onClick={() => {
-						setRunning(false);
-						runRef.current = false;
-						setGrid(createGrid());
-					}}>
-					Clear
-				</button>
-				<button
-					style={{
-						marginBottom: '1em',
-						marginLeft: '2em',
-						width: '7em',
-						border: 'none',
-						padding: '.7em',
-					}}
-					onClick={() => {
-						setGridVisible(!isGridVisible);
-					}}>
-					{isGridVisible ? 'Hide Grid' : 'Show Grid'}
-				</button>
-				<button
-					style={{
-						marginBottom: '1em',
-						marginLeft: '2em',
-						width: '15em',
-						border: 'none',
-						padding: '.7em',
-					}}
-					onClick={() => {
-						setNeighborVisible(!isNeighborsVisible);
-					}}>
-					{isNeighborsVisible
-						? 'Hide Number Of Neighbors'
-						: 'Show Number Of Neighbors'}
-				</button>
-				<button
-					style={{
-						marginBottom: '1em',
-						marginLeft: '2em',
-						width: '5em',
-						border: 'none',
-						padding: '.7em',
-					}}
-					onClick={() => {
-						window.location = 'https://wikipedia.org/wiki/Conway%27s_Game_of_Life' as any;
-					}}>
-					About
-				</button>
-
+							setGrid(createGrid());
+						}}>
+						Clear
+					</button>
+					<button
+						style={{
+							marginBottom: '1em',
+							marginLeft: '2em',
+							width: '7em',
+							border: 'none',
+							padding: '.7em',
+						}}
+						onClick={() => {
+							setGridVisible(!isGridVisible);
+						}}>
+						{isGridVisible ? 'Hide Grid' : 'Show Grid'}
+					</button>
+					<button
+						style={{
+							marginBottom: '1em',
+							marginLeft: '2em',
+							width: '15em',
+							border: 'none',
+							padding: '.7em',
+						}}
+						onClick={() => {
+							setNeighborVisible(!isNeighborsVisible);
+						}}>
+						{isNeighborsVisible
+							? 'Hide Number Of Neighbors'
+							: 'Show Number Of Neighbors'}
+					</button>
+					<button
+						style={{
+							marginBottom: '1em',
+							marginLeft: '2em',
+							width: '5em',
+							border: 'none',
+							padding: '.7em',
+						}}
+						onClick={() => {
+							window.location = 'https://wikipedia.org/wiki/Conway%27s_Game_of_Life' as any;
+						}}>
+						About
+					</button>
+					<div>
+						<p>Speed ({speed}): </p>
+						<input
+							className='slider'
+							type='range'
+							min='0'
+							max='1000'
+							value={speed}
+							onChange={(e) => {
+								setSpeed(parseInt(e.target.value));
+								speedRef.current = parseInt(e.target.value);
+							}}></input>
+					</div>
+				</div>
 				<div
 					className='App'
 					style={{
