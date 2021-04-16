@@ -83,7 +83,6 @@ const App: React.FC = () => {
 
 		return divGrid;
 	}
-
 	let runRef = useRef(isRunning);
 
 	function getNeighbors(grid: any, x: number, y: number) {
@@ -136,7 +135,6 @@ const App: React.FC = () => {
 					style={{
 						marginBottom: '1em',
 						width: '5em',
-						backgroundColor: '#919191',
 						border: 'none',
 						padding: '.7em',
 					}}
@@ -157,7 +155,6 @@ const App: React.FC = () => {
 						marginBottom: '1em',
 						marginLeft: '2em',
 						width: '5em',
-						backgroundColor: '#919191',
 						border: 'none',
 						padding: '.7em',
 					}}
@@ -173,7 +170,6 @@ const App: React.FC = () => {
 						marginBottom: '1em',
 						marginLeft: '2em',
 						width: '7em',
-						backgroundColor: '#919191',
 						border: 'none',
 						padding: '.7em',
 					}}
@@ -182,13 +178,11 @@ const App: React.FC = () => {
 					}}>
 					{isGridVisible ? 'Hide Grid' : 'Show Grid'}
 				</button>
-
 				<button
 					style={{
 						marginBottom: '1em',
 						marginLeft: '2em',
 						width: '15em',
-						backgroundColor: '#919191',
 						border: 'none',
 						padding: '.7em',
 					}}
@@ -198,6 +192,19 @@ const App: React.FC = () => {
 					{isNeighborsVisible
 						? 'Hide Number Of Neighbors'
 						: 'Show Number Of Neighbors'}
+				</button>
+				<button
+					style={{
+						marginBottom: '1em',
+						marginLeft: '2em',
+						width: '5em',
+						border: 'none',
+						padding: '.7em',
+					}}
+					onClick={() => {
+						window.location = 'https://wikipedia.org/wiki/Conway%27s_Game_of_Life' as any;
+					}}>
+					About
 				</button>
 
 				<div
