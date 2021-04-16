@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/gameOfLife/static/css/main.ea1455b2.chunk.css",
+    "main.js": "/gameOfLife/static/js/main.041a56cb.chunk.js",
+    "main.js.map": "/gameOfLife/static/js/main.041a56cb.chunk.js.map",
+    "runtime-main.js": "/gameOfLife/static/js/runtime-main.694b18e1.js",
+    "runtime-main.js.map": "/gameOfLife/static/js/runtime-main.694b18e1.js.map",
+    "static/js/2.fb13ed22.chunk.js": "/gameOfLife/static/js/2.fb13ed22.chunk.js",
+    "static/js/2.fb13ed22.chunk.js.map": "/gameOfLife/static/js/2.fb13ed22.chunk.js.map",
+    "index.html": "/gameOfLife/index.html",
+    "static/css/main.ea1455b2.chunk.css.map": "/gameOfLife/static/css/main.ea1455b2.chunk.css.map",
+    "static/js/2.fb13ed22.chunk.js.LICENSE.txt": "/gameOfLife/static/js/2.fb13ed22.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.694b18e1.js",
+    "static/js/2.fb13ed22.chunk.js",
+    "static/css/main.ea1455b2.chunk.css",
+    "static/js/main.041a56cb.chunk.js"
+  ]
+}
